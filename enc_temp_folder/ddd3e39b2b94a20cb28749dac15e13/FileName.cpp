@@ -8,7 +8,7 @@ int sum(int array[][5]) {
     }
     return total;
 }
-int main() {
+void main() {
     int array[5][5];
     int num;
     scanf_s("%d", &num);
@@ -18,5 +18,4 @@ int main() {
         }
     }
     printf("%d", sum(array));
-    return 0;
 }
