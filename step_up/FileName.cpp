@@ -1,49 +1,31 @@
 #include <stdio.h>
-int deleteElement(int arr[], int* size, int value) {
-    for (int i = 0; i < *size; i++) {
-        if (arr[i] == value) {
-            int num = i;
-            for (; i+1 < *size; i++) {
-                arr[i] = arr[i + 1];
+void bubbleSort(int array[], int n) {
+    int token = 0;
+    do{
+        token = 0;
+        for (int i = 0; i + 1 < n; i++) {
+            if (array[i] > array[i + 1]) {
+                int num = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = num;
+                token++;
             }
-            *size = 4;
-            return 1;
         }
-    }
-    return 0;
+    } while (token != 0);
 }
 int main() {
 
-    int arr[] = { 1, 2, 3, 4, 5 };
+    int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
 
-    int size = 5; // 배열의 초기 크기
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-    int value, found;
+    // 버블 정렬 수행
 
+    bubbleSort(arr, n);
 
-
-    scanf_s("%d", &value); //삭제할 값 입력
-
-
-
-    found = deleteElement(arr, &size, value);
-
-
-    if (found) {
-
-        for (int i = 0; i < size; i++) {
-
-            printf("%d ", arr[i]);
-
-        }
-
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
     }
-
-    else
-
-        printf("Not found");
-
-
 
     return 0;
 
