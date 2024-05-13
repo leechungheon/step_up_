@@ -1,101 +1,50 @@
 #include <stdio.h>
-
-#include <stdlib.h>
-
-
-
-void push(int);
-
-int pop();
-
-void print_s();
-
-
-
-typedef struct node {
-
-    int data;
-
-    struct node* next;
-
-}stack;
-
-
-
-
-
-stack* top = NULL;
-
-
-
+int deleteElement(int arr[], int* size, int value) {
+    for (int i = 0; i < *size; i++) {
+        if (arr[i] == value) {
+            int num = i;
+            for (; i+1 < *size; i++) {
+                arr[i] = arr[i + 1];
+            }
+            *size = 4;
+            return 1;
+        }
+    }
+    return 0;
+}
 int main() {
 
-    push(1);
+    int arr[] = { 1, 2, 3, 4, 5 };
 
-    push(2);
+    int size = 5; // 배열의 초기 크기
 
-    push(3);
-
-    push(4);
-
-    push(5);
-
-    print_s();
+    int value, found;
 
 
 
-    pop();
-
-    pop();
-
-    print_s();
-
-}
+    scanf_s("%d", &value); //삭제할 값 입력
 
 
 
-void push(int data) {
-    stack *newNode = (stack*)malloc(sizeof(stack));
-    //struct node* newNode; 기존 오류 코드 수정
-    if (newNode == NULL) {
-        printf("Overstack!\n");
-        exit(1);
-    }
-    newNode->data = data;
-    newNode->next = top;
-    top = newNode;
-}
+    found = deleteElement(arr, &size, value);
 
-                                                                                                                           
-int pop() {
-    stack* del;
-    int value;
 
-    if (top == NULL) {
-        printf("stack is empty!");
-        exit(1);
-    }
-    value = top->data;
-    del = top;
-    top = top->next;
-    free(del);
+    if (found) {
 
-    return value;
-}
-                                                                                                                             
-void print_s() {
-    stack* i;
-    stack* count = top;
+        for (int i = 0; i < size; i++) {
 
-    i = count;
-    while (i != NULL) {
+            printf("%d ", arr[i]);
 
-        printf("%d \n", i->data);
-        i = count->next;
-        count = count->next;
+        }
 
     }
 
-    printf("\n");
-}
+    else
 
+        printf("Not found");
+
+
+
+    return 0;
+
+}
