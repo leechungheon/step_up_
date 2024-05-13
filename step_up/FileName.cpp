@@ -1,32 +1,37 @@
-#include <stdio.h>
-void bubbleSort(int array[], int n) {
-    int token = 0;
-    do{
-        token = 0;
-        for (int i = 0; i + 1 < n; i++) {
-            if (array[i] > array[i + 1]) {
-                int num = array[i];
-                array[i] = array[i + 1];
-                array[i + 1] = num;
-                token++;
-            }
-        }
-    } while (token != 0);
+
+#include<stdio.h>
+#define SIZE 100
+int stack[SIZE], choice, top;
+void push(int x) {
+    stack[++top] = x;
+    choice = top;
+}
+int pop(void) {
+    int num = stack[top];
+    stack[top--] = 0;
+    choice--;
+    return num;
+}
+void display(void) {
+    int i;
+    if (top >= 0) {
+        for (i = top; i >= 0; i--)
+            printf("%d ", stack[i]);
+    }
+    else {
+        printf("\n STACK Empty");
+    }
 }
 int main() {
+    int i;
+    top = -1;
+    int num;
 
-    int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
-
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    // 버블 정렬 수행
-
-    bubbleSort(arr, n);
-
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
+    for (i = 1; i <= 3; i++) {
+        scanf_s("%d", &num);
+        push(num);
     }
-
+    pop();
+    display();
     return 0;
-
 }
