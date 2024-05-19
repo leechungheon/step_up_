@@ -148,7 +148,7 @@ void deleteNode(treeNode* root, element key) {
 	free(p);
 }
 
-// 이진 탐색 트리를 중위 순회하면서 출력하는 연산
+// 이진 탐색 트리를 중위 순회하면서 출력하는 연산dd
 void displayInorder(treeNode* root) {
 	if (root) {
 		displayInorder(root->left);
