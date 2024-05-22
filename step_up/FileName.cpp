@@ -13,7 +13,7 @@ typedef struct QNode {
 	struct QNode* link;
 } QNode;
 
-// 큐 구조체 정의
+//큐 구조체 정의
 typedef struct {
 	QNode* front, * rear;
 } LQueueType;
