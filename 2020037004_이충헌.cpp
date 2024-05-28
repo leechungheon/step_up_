@@ -36,25 +36,22 @@ int isFull(QueueType* cQ) {
 
 // 원형 큐의 rear에 원소를 삽입하는 연산
 void enQueue(QueueType* cQ, element item) {
-	if (isFull(cQ)) {
-		printf("queue is full!");
-	}
-	else {
-		cQ->rear=(cQ->rear+1)% cQ_SIZE;
-		cQ->queue[cQ->rear] = item;
-	}
+
+
+
+
+
+
+
 }
 
 // 원형 큐의 front에서 원소를 삭제하고 반환하는 연산
 element deQueue(QueueType* cQ) {
-	if (isEmpty(cQ)) {
-		printf("queue is empty!");
-		exit(1);
-	}
-	else {
-		cQ->front = (cQ->front+1) % cQ_SIZE;
-		return cQ->queue[cQ->front];
-	}
+
+
+
+
+
 }
 
 // 원형 큐의 가장 앞에 있는 원소를 검색하는 연산
@@ -65,19 +62,15 @@ element peek(QueueType* cQ) {
 
 // 원형 큐의 원소를 출력하는 연산
 void printQ(QueueType* cQ) {
-	if (isEmpty(cQ)) {  // 함수 호출 시 괄호 추가
-		printf("Queue is empty!\n");  // 큐가 비어 있을 때 메시지 출력
-	}
-	else {
-		printf("Queue: ");
-		int i = (cQ->front + 1) % cQ_SIZE;
-		while (i != (cQ->rear + 1) % cQ_SIZE) {  // 원형 큐의 wrap-around를 고려하여 출력
-			printf("%3c", cQ->queue[i]);
-			i = (i + 1) % cQ_SIZE;
-		}
-		printf("\n");
-	}
+
+
+
+
+
+
+
 }
+
 void main(void) {
 	QueueType* cQ = createQueue();  // 큐 생성
 	element data;
