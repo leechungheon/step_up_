@@ -1,50 +1,62 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_VERTEX 30
+#define Q_SIZE 4
 
-//그래프를 인접 행렬로 표현하기 위한 구조체 정의
-typedef struct graphType {
-    int n;
-    int adjMatrix[MAX_VERTEX][MAX_VERTEX];
-}graphType;
+typedef char element;
+typedef struct {
+    element queue[Q_SIZE];
+    int front, rear;
+}QueueType;
 
-//공백 그래프를 생성하는 연산
-void createGraph(graphType* g) {
-    int i, j;
-    g->n = 0; // 정점 개수를 0으로 초기화
-    for (i = 0; i < MAX_VERTEX; i++) {
-        for (j = 0; j < MAX_VERTEX; j++) {
-            g->adjMatrix[i][j] = 0;
-        }
+QueueType* creatQueue() {
+    QueueType* Q;
+    Q = (QueueType*)malloc(sizeof(QueueType));
+    Q->front = -1;
+    Q->rear = -1;
+    return Q;
+}
+
+int isEmpty(QueueType* Q) {
+    if (Q->front == Q->rear) {
+        printf("Queue is empty!");
+        return 1;
+    }
+    else return 0;
+}
+
+int isFull(QueueType* Q) {
+    if (Q->rear == Q_SIZE - 1) {
+        printf("Queue is full!");
+        return 1;
+    }
+    else return 0;
+}
+
+void enQueue(QueueType* Q, element item) {
+    if (isFull(Q))return;
+    else {
+        Q->rear++;
+        Q->queue[Q->rear] = item;
     }
 }
 
-//그래프 g에 정점 v를 삽입하는 연산
-void insertVertex(graphType* g, int v) {
-    if (((g->n) + 1) > MAX_VERTEX) {
-        printf("\n 그래프 정점의 개수를 초과하였습니다!");
-        return;
-    }
-    g->n++;//그래프 정점의 개수 n을 하나 증가
-}
-
-//그래프 g에 간선(u,v)를 삽입하는 연산
-void insertEdge(graphType* g, int u, int v) {
-    if (u >= g->n || v >= g->n) { //*배열 0부터 시작하는거 생각
-        printf("\n 그래프에 없는 정점입니다!");
-        return;
-    }
-    g->adjMatrix[u][v] = 1;
-}
-
-//그래프 g의 2차원 배열값을 순서대로 출력하는 연산
-void print_adjMatrix(graphType* g) {
-    int i, j;
-    for (i = 0; i < (g->n); i++) {
-        printf("\n\t\t");
-        for (j = 0; j < (g->n); j++)
-            printf("%2d", g->adjMatrix[i][j]);
+element deQueue(QueueType* Q, element item) {
+    if (isEmpty(Q))return;
+    else {
+        Q->front++;
+        return Q->queue[Q->front];
     }
 }
 
-//void main함수
+element peek(QueueType* Q) {
+    if (isEmpty)exit(1);
+    else return  Q->queue[Q->front + 1];
+}
+
+void printQ(QueueType* Q) {
+    int i;
+    printf("Queue :[");
+    for (i = Q->front + 1; i <= Q->rear; i++)
+        printf("%3c", Q->queue[i]);
+    printf("]");
+}
